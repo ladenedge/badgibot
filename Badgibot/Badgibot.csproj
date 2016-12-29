@@ -3619,6 +3619,8 @@
     <Content Include="Content\images\9\no-user.jpg" />
     <Content Include="Content\images\9\user_picture%281%29.jpg" />
     <Content Include="Content\images\9\user_picture.jpg" />
+    <Content Include="Content\images\badger.png" />
+    <Content Include="Content\images\unicorn.png" />
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
     <Content Include="Messages.Context.tt">
@@ -3680,6 +3682,10 @@
     </Content>
     <Content Include="App_Data\Messages.sqlite" />
     <None Include="Properties\PublishProfiles\BadgiBot - Web Deploy.pubxml" />
+    <Content Include="ThreadSettings\GetStartedButton.json" />
+    <Content Include="ThreadSettings\Greeting.json" />
+    <Content Include="ThreadSettings\PersistentMenu.json" />
+    <Content Include="ThreadSettings\SendAll.bat" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

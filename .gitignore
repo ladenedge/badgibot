@@ -47,3 +47,9 @@ Temporary Items
 .apdisk
 
 .vs
+Badgibot/Content/images/[0-9]*
+Badgibot/App_Data/Messages.sqlite
+*.user
+bin
+obj
+packages

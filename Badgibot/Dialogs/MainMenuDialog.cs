@@ -60,9 +60,11 @@ namespace Badgibot
                         context.Wait(MainMenuAsync);
                     }
 
+                    var sentMessages = 0;
                     var startId = randomRow.MessagesId - cmd.ContextLines;
+                    var totalRows = cmd.ContextLines * 2 + 1;
                     var finalRows = db.Messages.Where(m => m.MessagesId >= startId)
-                                               .Take(cmd.ContextLines * 2 + 1);
+                                               .Take(totalRows);
 
                     foreach (var r in finalRows)
                     {
@@ -87,6 +89,10 @@ namespace Badgibot
                                 };
                                 break;
                         }
+
+                        if (++sentMessages == totalRows)
+                            reply.AddQuickReplies(BaseUrl);
+
                         await context.PostAsync(reply);
                     }
                 }
@@ -106,6 +112,44 @@ namespace Badgibot
             var reply = context.MakeMessage();
             reply.Text = text;
             return context.PostAsync(reply);
+        }
+
+        public static void AddQuickReplies(this IMessageActivity msg, string baseUrl)
+        {
+            var channelData = JObject.FromObject(new
+            {
+                quick_replies = new dynamic[]
+                {
+                    new
+                    {
+                        content_type = "text",
+                        title = "Image",
+                        payload = "bad image",
+                        image_url = baseUrl + "badger.png",
+                    },
+                    new
+                    {
+                        content_type = "text",
+                        title = "Image",
+                        payload = "uni image",
+                        image_url = baseUrl + "unicorn.png",
+                    },
+                    new
+                    {
+                        content_type = "text",
+                        title = "Audio",
+                        payload = "audio",
+                    },
+                    new
+                    {
+                        content_type = "text",
+                        title = "Video",
+                        payload = "video",
+                    }
+                }
+            });
+
+            msg.ChannelData = channelData;
         }
     }
 }
